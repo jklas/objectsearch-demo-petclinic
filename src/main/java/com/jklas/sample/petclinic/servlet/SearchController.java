@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import com.jklas.search.engine.VectorSearch;
 import com.jklas.search.engine.dto.VectorRankedResult;
-import com.jklas.search.engine.score.VectorRanker;
+import com.jklas.search.engine.score.DefaultVectorRanker;
 import com.jklas.search.index.IndexId;
 import com.jklas.search.index.memory.MemoryIndex;
 import com.jklas.search.index.memory.MemoryIndexReaderFactory;
@@ -68,7 +68,7 @@ public class SearchController extends MultiActionController implements Initializ
 		VectorSearch vectorSearch = new VectorSearch(query, MemoryIndexReaderFactory.getInstance());
 		long totalTime = System.currentTimeMillis() - init;
 
-		List<VectorRankedResult> results = vectorSearch.search(new VectorRanker());
+		List<VectorRankedResult> results = vectorSearch.search(new DefaultVectorRanker());
 
 		Map<String, Object> model = new HashMap<String,Object>();
 		

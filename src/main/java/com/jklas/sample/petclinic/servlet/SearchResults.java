@@ -18,7 +18,7 @@ import com.jklas.sample.petclinic.Owner;
 import com.jklas.sample.petclinic.Pet;
 import com.jklas.search.engine.VectorSearch;
 import com.jklas.search.engine.dto.VectorRankedResult;
-import com.jklas.search.engine.score.VectorRanker;
+import com.jklas.search.engine.score.DefaultVectorRanker;
 import com.jklas.search.index.memory.MemoryIndexReaderFactory;
 import com.jklas.search.query.vectorial.VectorQuery;
 import com.jklas.search.query.vectorial.VectorQueryParser;
@@ -46,7 +46,7 @@ public class SearchResults extends HttpServlet {
 		VectorSearch vectorSearch = new VectorSearch(query, MemoryIndexReaderFactory.getInstance());
 		long totalTime = System.currentTimeMillis() - init;
 
-		List<VectorRankedResult> results = vectorSearch.search(new VectorRanker());
+		List<VectorRankedResult> results = vectorSearch.search(new DefaultVectorRanker());
 
 		printHeader();
 		printBody(query, results, totalTime);
